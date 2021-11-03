@@ -44,7 +44,9 @@ class MyCallbacks : public BLECharacteristicCallbacks
 private:
     void onWrite(BLECharacteristic *pCharacteristic)
     {
-        std::string value = pCharacteristic->getValue();
+        std::string value_raw = pCharacteristic->getValue();
+        std::string delimiter = ",";
+        std::string value = value_raw.substr(0, value_raw.find(delimiter));
 
         if (value.length() > 0)
         {
